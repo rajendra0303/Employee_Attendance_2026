@@ -1,0 +1,76 @@
+﻿@model List<Employee_Attendance_2026.Models.EmployeeListModel>
+
+<h2>Engineer Employees</h2>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <input type="text" id="liveSearch"
+               class="form-control"
+               placeholder="Search Employee Name..."
+               autocomplete="off" />
+    </div>
+</div>
+
+
+<table class="table table-bordered" id="empTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr class="empRow">
+                <td class="empName">@e.FullName</td>
+                <td>
+                    <a class="btn btn-sm btn-success"
+                       href="@Url.Action("Calendar", "Engineer", new { id = e.EmployeeId })">
+                        Open Calendar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="noDataMsg" class="alert alert-warning mt-3" style="display:none;">
+    No data found
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const searchBox = document.getElementById("liveSearch");
+        const rows = document.querySelectorAll("#empTable tbody .empRow");
+        const noDataMsg = document.getElementById("noDataMsg");
+
+        searchBox.addEventListener("keyup", function () {
+
+            let keyword = searchBox.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                let name = row.querySelector(".empName").innerText.toLowerCase();
+
+                if (name.includes(keyword)) {
+                    row.style.display = "";
+                    visibleCount++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            // ✅ Show/Hide No data found
+            if (visibleCount === 0) {
+                noDataMsg.style.display = "block";
+            } else {
+                noDataMsg.style.display = "none";
+            }
+        });
+    });
+</script>
+
+

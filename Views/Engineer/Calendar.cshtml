@@ -1,0 +1,117 @@
+﻿@model List<Employee_Attendance_2026.Models.CalendarDayModel>
+
+@{
+    var empId = (int)ViewBag.EmployeeId;
+    var groupName = (string)ViewBag.GroupName;
+
+    string MonthName = DateTime.Today.ToString("MMMM yyyy");
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h2 class="mb-0">@groupName Attendance</h2>
+        <small class="text-muted">Month: @MonthName</small>
+    </div>
+
+    <div class="text-end">
+        <span class="badge bg-success fs-6 p-2">Present: @ViewBag.PresentCount</span>
+        <span class="badge bg-danger fs-6 p-2 ms-2">Absent: @ViewBag.AbsentCount</span>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" id="calendarTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width: 25%;">Date</th>
+                        <th style="width: 25%;">Day</th>
+                        <th style="width: 25%;">Status</th>
+                        <th style="width: 25%;">Mark Attendance</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var day in Model)
+                    {
+                        string rowClass = "";
+                        if (day.IsSunday) rowClass = "table-secondary";
+                        else if (day.IsToday) rowClass = "table-warning";
+
+
+                        <tr class="@rowClass">
+                            <td>
+                                <strong>@day.Date.ToString("dd-MMM-yyyy")</strong>
+                                @if (day.IsToday)
+                                {
+                                    <span class="badge bg-primary ms-2">Today</span>
+                                }
+                            </td>
+
+                            <td>@day.Date.ToString("dddd")</td>
+
+                            <td>
+                                @if (day.IsSunday)
+                                {
+                                    <span class="badge bg-secondary p-2">Weekly Off</span>
+                                }
+                                else if (day.Status == "Present")
+                                {
+                                    <span class="badge bg-success p-2">Present</span>
+                                }
+                                else if (day.Status == "Absent")
+                                {
+                                    <span class="badge bg-danger p-2">Absent</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Not Marked</span>
+                                }
+                            </td>
+
+
+                            <td>
+                                @if (day.IsSunday)
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                                else if (day.IsToday)
+                                {
+                                    <form asp-action="MarkAttendance" method="post" class="d-flex gap-2">
+                                        <input type="hidden" name="EmployeeId" value="@empId" />
+
+                                        <select name="Status"
+                                                class="form-select"
+                                                style="max-width:200px;"
+                                                required
+                                                onchange="this.form.submit()">
+                                            <option value="">Select Status</option>
+                                            <option value="Present">Present</option>
+                                            <option value="Absent">Absent</option>
+                                        </select>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">-</span>
+                                }
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    #calendarTable thead th {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+</style>

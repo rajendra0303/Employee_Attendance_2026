@@ -20,3 +20,66 @@ html {
 body {
   margin-bottom: 60px;
 }
+/* ? Dashboard Stat Cards */
+.stat-card {
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: 0.2s ease-in-out;
+}
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+    }
+
+.stat-title {
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* ? Faint background colors (real world look) */
+.stat-blue {
+    background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(255,255,255,1));
+    border-left: 6px solid #3b82f6;
+}
+
+.stat-purple {
+    background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(255,255,255,1));
+    border-left: 6px solid #a855f7;
+}
+
+.stat-green {
+    background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(255,255,255,1));
+    border-left: 6px solid #22c55e;
+}
+
+.stat-orange {
+    background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(255,255,255,1));
+    border-left: 6px solid #f97316;
+}
+
+/* ? Light versions for second row */
+.stat-blue-light {
+    background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(255,255,255,1));
+    border-left: 6px solid rgba(59,130,246,0.7);
+}
+
+.stat-purple-light {
+    background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(255,255,255,1));
+    border-left: 6px solid rgba(168,85,247,0.7);
+}
+
+.stat-green-light {
+    background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(255,255,255,1));
+    border-left: 6px solid rgba(34,197,94,0.7);
+}

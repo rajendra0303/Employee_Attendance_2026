@@ -1,8 +1,60 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row g-3">
+
+    <div class="col-md-3">
+        <div class="stat-card stat-blue">
+            <div class="stat-title">Total Developers</div>
+            <div class="stat-value">@ViewBag.TotalDev</div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card stat-purple">
+            <div class="stat-title">Total Engineers</div>
+            <div class="stat-value">@ViewBag.TotalEng</div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card stat-green">
+            <div class="stat-title">Total Interns</div>
+            <div class="stat-value">@ViewBag.TotalIntern</div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card stat-orange">
+            <div class="stat-title">Today Total Present</div>
+            <div class="stat-value">@ViewBag.TodayTotalPresent</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row g-3 mt-2">
+
+    <div class="col-md-4">
+        <div class="stat-card stat-blue-light">
+            <div class="stat-title">Today Developer Present</div>
+            <div class="stat-value">@ViewBag.TodayDevPresent</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card stat-purple-light">
+            <div class="stat-title">Today Engineer Present</div>
+            <div class="stat-value">@ViewBag.TodayEngPresent</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card stat-green-light">
+            <div class="stat-title">Today Intern Present</div>
+            <div class="stat-value">@ViewBag.TodayInternPresent</div>
+        </div>
+    </div>
+
 </div>
