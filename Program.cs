@@ -1,7 +1,20 @@
+using Employee_Attendance_2026.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<DbHelper>(sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    var cs = config.GetConnectionString("dbcs");
+    return new DbHelper(cs);
+});
+
+builder.Services.AddScoped<EmployeeDAL>();
+builder.Services.AddScoped<GroupDAL>();
+builder.Services.AddScoped<AttendanceDAL>();
 
 var app = builder.Build();
 

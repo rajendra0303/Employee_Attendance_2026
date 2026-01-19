@@ -3,47 +3,130 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Employee_Attendance_2026</title>
+    <title>@ViewData["Title"] - Employee Attendance</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Employee_Attendance_2026.styles.css" asp-append-version="true" />
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        body {
+            background: #f4f6f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 9999;
+            background: #1e293b;
+            color: white;
+            padding-top: 18px;
+        }
+
+            .sidebar .brand {
+                text-align: center;
+                font-weight: 800;
+                font-size: 18px;
+                margin-bottom: 18px;
+            }
+
+            .sidebar a {
+                color: #cbd5e1;
+                display: block;
+                padding: 12px 18px;
+                text-decoration: none;
+                font-size: 15px;
+                border-left: 3px solid transparent;
+            }
+
+                .sidebar a:hover {
+                    background: #334155;
+                    color: white;
+                    border-left: 3px solid #38bdf8;
+                }
+
+            .sidebar hr {
+                border-color: #334155;
+                margin: 10px 0;
+            }
+
+        /* Main content */
+        .main-content {
+            margin-left: 250px;
+            padding: 22px;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: #ffffff;
+            padding: 14px 18px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+    </style>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Employee_Attendance_2026</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="brand">Employee Attendance</div>
+
+        <a asp-controller="Home" asp-action="Index">Dashboard</a>
+        <a asp-controller="Employee" asp-action="Add">Add New Employee</a>
+
+        <hr />
+
+        <a asp-controller="Developer" asp-action="Index">Developers</a>
+        <a asp-controller="Engineer" asp-action="Index">Engineers</a>
+        <a asp-controller="Intern" asp-action="Index">Interns</a>
+
+        <hr />
+
+       
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Employee_Attendance_2026 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <div class="topbar">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <img src="~/images/montcrest-logo.png"
+                     alt="Montcrest Software"
+                     style="height:55px; width:auto;" />
+
+                <div>
+                    <h4 class="m-0" style="font-weight:800;">Montcrest Software Pvt. Ltd.</h4>
+                    <small class="text-muted">Employee Attendance Management System</small>
+                </div>
+            </div>
         </div>
-    </footer>
+
+
+
+
+        <div class="mt-4">
+            @RenderBody()
+        </div>
+
+        <footer class="mt-5 text-muted">
+            &copy; 2026 - Employee Attendance 2026
+        </footer>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
